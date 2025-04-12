@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: hw1
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ansergart1964
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  nats:
+    image: nats:latest
+    ports:
+      - "4222:4222"
