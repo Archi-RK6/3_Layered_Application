@@ -23,14 +23,14 @@ This project is a simple 3-layered Java application that connects to the NATS me
    - You can run this project from your IDE or command line.
    - If you’re using Gradle or Maven, ensure the relevant dependencies (`io.nats:jnats` and `org.postgresql:postgresql`) are in your build file.
 ### 2. Java
-   - The project is tested with Java 23.0.1.
+   - The project is tested with `Java 23.0.1`.
 ### 3. Docker & Docker Compose
    - Make sure you have Docker installed.
    - Make sure Docker Compose is installed.
 
 ## Running Instructions
 ### 1. PostgreSQL
-   - Create empty database `hw1` in your system.
+   - Create empty database `hw1` in your database system.
      - Remember the `user` and `password` of your database system (for example: `user` = postgres, `password` = ansergart1964)
 ### 2. Run docker-compose
    - Before running `docker-compose.yml` write in it your user and password in here:
@@ -45,7 +45,7 @@ This project is a simple 3-layered Java application that connects to the NATS me
    ```
    - The file `init.sql` must be executed at container startup (it creates the `messages` table in the `hw1` database).
      - If table `messages` is not created then run the following code in your database:
-     ```bash
+     ```sql
      CREATE TABLE IF NOT EXISTS messages (
          id SERIAL PRIMARY KEY,
          content TEXT NOT NULL,
@@ -64,30 +64,30 @@ Before running you need to set your user and password inside `MassageKeeper.java
 Two options of launch:
 #### A. IDE
    1. Open the project in your IDE (for example IntelliJ IDEA).
-   2. Make sure the JARs (jnats.jar and postgresql.jar) are on your classpath
+   2. Make sure the JARs (`jnats.jar` and `postgresql.jar`) are on your classpath
    3. Run Start.java.
    4. When the application starts, you will see:
-     ```      
-     Subscriber is running.
-     ```
+   ```      
+   Subscriber is running.
+   ```
 
 It will continue listening for messages from the updates subject on NATS.
 
 #### B. Command line
    1. Compile all `.java` files (make sure to include the classpath for NATS and PostgreSQL drivers):
 
-     ```
-     cp ".;jnats-2.21.0.jar;postgresql-42.7.5.jar" -d out src\Start.java src\API\Subscriber.java src\Business\MassageProcessor.java src\Data\MassageKeeper.java
-     ```
+        ```
+        cp ".;jnats-2.21.0.jar;postgresql-42.7.5.jar" -d out src\Start.java src\API\Subscriber.java src\Business\MassageProcessor.java src\Data\MassageKeeper.java
+        ```
    2. Run the application:
    
-     ```
-     java -cp "out;jnats-2.21.0.jar;postgresql-42.7.5.jar" Start
-     ```
-   3.When the application starts, you will see:
-   ```      
-   Subscriber is running.
-   ```
+        ```
+        java -cp "out;jnats-2.21.0.jar;postgresql-42.7.5.jar" Start
+        ```
+   3. When the application starts, you will see:
+        ```      
+        Subscriber is running.
+        ```
 It will continue listening for messages from the updates subject on NATS.
 
 ### 4. Testing
@@ -95,7 +95,7 @@ It will continue listening for messages from the updates subject on NATS.
      ```
      nats pub messages "Hello!" 
      ```
-- Verification of sending data to PostgreSQL:
+- Verification of sending data to PostgreSQL. Run this `.sql` script in your database:
      ```sql
      SELECT * 
      FROM messages;
