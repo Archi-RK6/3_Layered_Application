@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   postgres:
-    image: postgres:17
+    image: postgres:15
     environment:
       POSTGRES_DB: hw1
       POSTGRES_USER: postgres
@@ -9,9 +9,13 @@ services:
     ports:
       - "5432:5432"
     volumes:
+      - postgres_data:/var/lib/postgresql/data
       - ./src/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   nats:
     image: nats:latest
     ports:
       - "4222:4222"
+
+volumes:
+  postgres_data:

@@ -9,7 +9,7 @@ public class MassageKeeper {
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connection established.");
-            String query = "INSERT INTO messages(content) VALUES(?)";  // Используем плейсхолдер ?
+            String query = "INSERT INTO messages(content) VALUES(?)";
             try (PreparedStatement stmt = connection.prepareStatement(query)) {
                 stmt.setString(1, content);
                 int rowsAffected = stmt.executeUpdate();
