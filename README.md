@@ -77,7 +77,7 @@ It will continue listening for messages from the updates subject on NATS.
    1. Compile all `.java` files (make sure to include the classpath for NATS and PostgreSQL drivers):
 
         ```
-        cp ".;jnats-2.21.0.jar;postgresql-42.7.5.jar" -d out src\Start.java src\API\Subscriber.java src\Business\MassageProcessor.java src\Data\MassageKeeper.java
+        javac -cp ".;jnats-2.21.0.jar;postgresql-42.7.5.jar" -d out src\Start.java src\API\Subscriber.java src\Business\MassageProcessor.java src\Data\MassageKeeper.java
         ```
    2. Run the application:
    
